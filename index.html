@@ -3,283 +3,146 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Legalně Konopí — Informace & Poradenství</title>
-  <meta name="description" content="Aktuální informace a poradenství ohledně legálního konopí." />
+  <title>Legalně Konopí</title>
+  <meta name="description" content="Aktuální informace o legálním konopí, právní přehled a důvody pro legalizaci." />
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font & Leaflet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  <style>
-    :root{
-      --bg: #0f1724;
-      --card: #0b1220;
-      --muted: #9aa4b2;
-      --accent: #6ee7b7;
-      --glass: rgba(255,255,255,0.04);
-      --radius: 12px;
-      --max-width: 1100px;
-      --font-sans: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:var(--font-sans);
-      background:linear-gradient(180deg,#071028 0%, #071923 60%);
-      color:#e6eef6;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-    }
-
-    .container{
-      max-width:var(--max-width);
-      margin:48px auto;
-      padding:24px;
-    }
-
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-    .brand{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      text-decoration:none;
-      color:inherit;
-    }
-    .logo{
-      width:48px;
-      height:48px;
-      border-radius:10px;
-      background:linear-gradient(135deg,#2dd4bf,#60a5fa);
-      display:grid;
-      place-items:center;
-      font-weight:700;
-      color:#04202a;
-      box-shadow:0 6px 18px rgba(0,0,0,0.4);
-      flex:0 0 48px;
-    }
-    nav{display:flex;gap:12px;align-items:center}
-    nav a{
-      color:var(--muted);
-      text-decoration:none;
-      padding:8px 12px;
-      border-radius:8px;
-      font-weight:600;
-      transition:all .18s ease;
-    }
-    nav a:hover{color:var(--accent); background:var(--glass)}
-    .cta{
-      background:linear-gradient(90deg,#10b981,#06b6d4);
-      color:#04202a;
-      padding:10px 14px;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:700;
-      box-shadow:0 8px 24px rgba(6,78,59,0.12);
-    }
-
-    .hero{
-      display:grid;
-      grid-template-columns:1fr 420px;
-      gap:28px;
-      align-items:center;
-      margin-top:28px;
-    }
-    .hero-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:var(--radius);
-      padding:28px;
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
-    }
-    h1{
-      margin:0 0 14px 0;
-      font-size:28px;
-      letter-spacing:-0.3px;
-    }
-    p.lead{color:var(--muted); margin:0 0 18px 0;}
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-      margin-top:18px;
-    }
-    .feature{
-      background:rgba(255,255,255,0.02);
-      border-radius:12px;
-      padding:14px;
-      text-align:center;
-      min-height:100px;
-    }
-    .feature h3{margin:6px 0 4px 0;font-size:15px}
-    .feature p{margin:0;color:var(--muted);font-size:13px}
-
-    aside.card{
-      background:linear-gradient(180deg,#061021,#071725);
-      border-radius:12px;
-      padding:20px;
-      color:var(--muted);
-    }
-    .stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-    .stat{flex:1;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center}
-    .stat strong{display:block;color:var(--accent);font-size:18px}
-
-    section.section{
-      margin-top:32px;
-      display:grid;
-      gap:16px;
-      grid-template-columns:1fr 1fr;
-    }
-    .card{
-      background:linear-gradient(180deg,#061024 0%, #051226 100%);
-      padding:18px;
-      border-radius:12px;
-      box-shadow:0 6px 22px rgba(2,6,23,0.6);
-    }
-
-    footer{
-      margin-top:42px;
-      padding:18px 0;
-      color:var(--muted);
-      text-align:center;
-      font-size:14px;
-    }
-
-    /* responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr; padding-bottom:8px}
-      .grid{grid-template-columns:repeat(2,1fr)}
-      section.section{grid-template-columns:1fr}
-    }
-    @media (max-width:560px){
-      .grid{grid-template-columns:1fr}
-      nav{display:none}
-    }
-  </style>
+  <!-- lokální CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="canna1.png">
 </head>
+
 <body>
   <div class="container">
     <header>
       <a class="brand" href="#">
-        <div class="logo">LK</div>
+        <img src="canna1.png" alt="Logo" class="logo-img">
         <div>
-          <div style="font-weight:700">Legalně Konopí</div>
-          <div style="font-size:12px;color:var(--muted)">Poradenství • Novinky • Právní info</div>
+          <div style="font-weight: 700; font-size: 1.1rem;">Legalně Konopí</div>
+          <div style="font-size: 0.85rem; color: var(--muted);">Informace • Průvodce • Poradenství</div>
         </div>
       </a>
 
-      <nav aria-label="Hlavní navigace">
-        <a href="#about">O projektu</a>
-        <a href="#guides">Průvodci</a>
-        <a href="#faq">FAQ</a>
-        <a class="cta" href="#contact">Kontakt</a>
+      <nav>
+        <a href="#reasons">Legislativa</a>
+        <a href="#map-section">Světová mapa</a>
+        <a href="#contact" class="cta">Kontakt</a>
       </nav>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="hero-card">
-          <h1>Aktuální informace o legálním konopí</h1>
-          <p class="lead">Praktické průvodce, právní přehled a důvěryhodné zdroje pro občany i podnikatele.</p>
+      <!-- Nový článek o novince -->
+      <section class="news-banner">
+        <div class="news-content">
+          <span class="news-badge">🔥 Novinka</span>
+          <h2>Novela o konopí 2025 – co smíte legálně pěstovat a držet</h2>
+  <p>V Česku byla v červenci 2025 podepsána novela trestního zákoníku, která vstoupí v platnost k 1. lednu 2026. <a href="https://www.semenacannabis.cz/blog/novela-o-konopi-2025--co-smite-legalne-pestovat-a-drzet/" target="_blank">Zdroj</a></p>
+  
+  <h3>Pěstování</h3>
+  <ul>
+    <li>Dospělý občan může doma pěstovat <strong>1 až 3 rostliny konopí</strong> pro osobní potřebu bez postihu.</li>
+    <li>Pěstování <strong>4 až 5 rostlin</strong> bude od 1.1.2026 považováno za přestupek (správní pokuta).</li>
+    <li>Pěstování <strong>6 a více rostlin</strong> bude již trestným činem.</li>
+  </ul>
 
-          <div class="grid" aria-hidden="false">
-            <div class="feature">
-              <div style="font-size:22px;color:var(--accent)">📚</div>
-              <h3>Přehled zákonů</h3>
-              <p>Jednoduše vysvětlené právní aspekty a požadavky.</p>
-            </div>
-            <div class="feature">
-              <div style="font-size:22px;color:var(--accent)">🧭</div>
-              <h3>Průvodci</h3>
-              <p>Kroky pro bezpečné a legální nakládání s konopím.</p>
-            </div>
-            <div class="feature">
-              <div style="font-size:22px;color:var(--accent)">📈</div>
-              <h3>Aktuality</h3>
-              <p>Novinky ze světa legislativy a průmyslu.</p>
-            </div>
-          </div>
-        </div>
+  <h3>Držení</h3>
+  <ul>
+    <li>Doma je možné legálně držet až <strong>100 gramů sušeného konopí</strong>.</li>
+    <li>Ve veřejném prostoru je legální limit <strong>25 gramů</strong>.</li>
+    <li>Překročení těchto množství znamená přestupek (např. doma 101–200 g či veřejně 25–50 g) nebo trestný čin (nad 200 g doma či nad 50 g veřejně).</li>
+  </ul>
 
-        <aside class="card card--side">
-          <div class="card-header" style="display:flex;justify-content:space-between;align-items:center">
-            <strong style="color:#fff">Rychlý přehled</strong>
-            <small style="color:var(--muted)">Aktualizováno dnes</small>
-          </div>
+  <h3>Co novela nezahrnuje</h3>
+  <ul>
+    <li>Nepovoluje prodej či sdílení konopí mezi známými.</li>
+    <li>Nezavádí regulovaný trh, „coffee shopy“ ani reklamu na konopí.</li>
+  </ul>
 
-          <div class="stats" role="list">
-            <div class="stat" role="listitem"><strong>120+</strong><span style="font-size:12px">Článků</span></div>
-            <div class="stat" role="listitem"><strong>35</strong><span style="font-size:12px">Průvodců</span></div>
-            <div class="stat" role="listitem"><strong>5</strong><span style="font-size:12px">Právních zdrojů</span></div>
-          </div>
-
-          <div style="margin-top:12px">
-            <a class="cta" href="#guides" style="display:inline-block">Začít číst</a>
-          </div>
-        </aside>
+  <h3>Význam</h3>
+  <p>Novela přináší větší právní jistotu a dekriminalizuje drobné projevy pěstování či držení pro osobní potřebu.</p>
+    </div>
       </section>
 
-      <section id="about" class="section">
-        <div class="card">
-          <h2 style="margin-top:0">O projektu</h2>
-          <p style="color:var(--muted)">Cílem je poskytovat spolehlivé, srozumitelné a aktuální informace o legálním konopí. Obsah připravují odborníci a právníci.</p>
-          <ul style="color:var(--muted);padding-left:18px">
-            <li>Právní přehledy</li>
-            <li>Praktické průvodce</li>
-            <li>Kontakty na specialisty</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h2 style="margin-top:0">Pro koho</h2>
-          <p style="color:var(--muted)">Pro občany, podnikatele a zdravotnické pracovníky, kteří potřebují jasné informace bez zbytečného právnického žargonu.</p>
+      <section id="reasons" class="section">
+        <h2>10 důvodů pro absolutní legalizaci konopí</h2>
+        <div class="reasons-grid">
+          <div class="reason"><span>⚖️</span><h3>1. Svoboda jednotlivce</h3><p>Dospělí mají právo rozhodovat o vlastním těle bez zásahu státu.</p></div>
+          <div class="reason"><span>💰</span><h3>2. Daňové příjmy</h3><p>Legalizace přináší miliardy do státního rozpočtu z daní a licencí.</p></div>
+          <div class="reason"><span>🚫</span><h3>3. Konec černého trhu</h3><p>Regulovaný trh omezuje nelegální obchod a zvyšuje bezpečnost.</p></div>
+          <div class="reason"><span>⚕️</span><h3>4. Léčebný potenciál</h3><p>Konopí pomáhá při bolesti, úzkosti, epilepsii a dalších onemocněních.</p></div>
+          <div class="reason"><span>👮</span><h3>5. Odlehčení justice</h3><p>Policie a soudy se mohou soustředit na skutečně závažné zločiny.</p></div>
+          <div class="reason"><span>🌿</span><h3>6. Ekologická plodina</h3><p>Konopí zlepšuje kvalitu půdy a má minimální ekologickou stopu.</p></div>
+          <div class="reason"><span>👩‍🔬</span><h3>7. Podpora výzkumu</h3><p>Legální prostředí umožní vědecký výzkum bez překážek.</p></div>
+          <div class="reason"><span>🧠</span><h3>8. Vzdělávání místo trestů</h3><p>Prevence a informovanost jsou efektivnější než kriminalizace.</p></div>
+          <div class="reason"><span>🏥</span><h3>9. Bezpečnější užívání</h3><p>Kontrola kvality brání kontaminaci a zneužívání.</p></div>
+          <div class="reason"><span>🤝</span><h3>10. Společenský pokrok</h3><p>Legalizace odstraňuje stigma a podporuje otevřený dialog.</p></div>
         </div>
       </section>
 
-      <section id="guides" class="section" style="margin-top:18px">
-        <div class="card">
-          <h3 style="margin-top:0">Nejčtenější průvodci</h3>
-          <ol style="color:var(--muted);padding-left:18px">
-            <li>Jak začít legálně pěstovat</li>
-            <li>Prodej a distribuce — co sledovat</li>
-            <li>Práva pacientů a lékařské užití</li>
-          </ol>
-        </div>
-
-        <div class="card">
-          <h3 style="margin-top:0">Často kladené otázky</h3>
-          <details style="color:var(--muted);margin-bottom:8px"><summary style="cursor:pointer">Je legální držet konopí pro osobní potřebu?</summary><div style="margin-top:8px">Odpověď závisí na místní legislativě. Vždy ověřit aktuální zákon.</div></details>
-          <details style="color:var(--muted)"><summary style="cursor:pointer">Kde najdu právní pomoc?</summary><div style="margin-top:8px">Seznam doporučených advokátů a poradenských služeb najdete v sekci Kontakt.</div></details>
-        </div>
+      <section id="map-section" class="section">
+        <h2>Mapa států, kde je konopí zcela legální</h2>
+        <div id="map"></div>
       </section>
 
-      <section id="contact" style="margin-top:22px">
-        <div class="card">
-          <h3 style="margin-top:0">Kontakt</h3>
-          <p style="color:var(--muted)">Máte dotaz nebo chcete konzultaci? Napište nám.</p>
-          <form style="display:flex;flex-direction:column;gap:8px" onsubmit="event.preventDefault(); alert('Děkujeme, zpráva odeslána (ukázka)');">
-            <input required placeholder="Jméno" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit">
-            <input required type="email" placeholder="E-mail" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit">
-            <textarea required placeholder="Zpráva" rows="4" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit"></textarea>
-            <button class="cta" type="submit" style="align-self:flex-start">Odeslat</button>
-          </form>
-        </div>
+      <section id="contact" class="section">
+        <h2>Kontakt</h2>
+        <form style="display:flex;flex-direction:column;gap:10px;max-width:400px;margin:0 auto;text-align:left" onsubmit="event.preventDefault(); alert('Děkujeme, zpráva odeslána (ukázka)');">
+          <input required placeholder="Jméno" style="padding:10px;border-radius:8px;border:1px solid #dce3de;background:#f9fbfa;color:inherit">
+          <input required type="email" placeholder="E-mail" style="padding:10px;border-radius:8px;border:1px solid #dce3de;background:#f9fbfa;color:inherit">
+          <textarea required placeholder="Zpráva" rows="4" style="padding:10px;border-radius:8px;border:1px solid #dce3de;background:#f9fbfa;color:inherit"></textarea>
+          <button class="cta" type="submit" style="align-self:flex-start">Odeslat</button>
+        </form>
       </section>
     </main>
 
     <footer>
-      © <span id="year"></span> Legalně Konopí — Všechna práva vyhrazena
+      © <span id="year"></span> Matyáš Auervek — Všechna práva vyhrazena
     </footer>
   </div>
 
+  <!-- Leaflet.js -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // drobné skripty: aktuální rok
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Inicializace mapy
+    const map = L.map('map').setView([20, 0], 2);
+
+    // Podkladová vrstva
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Země s plnou legalizací (2025)
+    const legalCountries = [
+      { name: 'Kanada', coords: [56.1304, -106.3468] },
+      { name: 'Uruguay', coords: [-32.5228, -55.7658] },
+      { name: 'Malta', coords: [35.9375, 14.3754] },
+      { name: 'Německo', coords: [51.1657, 10.4515] },
+      { name: 'Thajsko', coords: [15.8700, 100.9925] },
+      { name: 'Jižní Afrika', coords: [-30.5595, 22.9375] },
+      { name: 'Mexiko', coords: [23.6345, -102.5528] },
+      { name: 'Lucembursko', coords: [49.8153, 6.1296] },
+      { name: 'Gruzie', coords: [42.3154, 43.3569] },
+      { name: 'Spojené státy (vybrané státy)', coords: [37.0902, -95.7129] }
+    ];
+
+    // Vykreslení bodů
+    legalCountries.forEach(c => {
+      L.circleMarker(c.coords, {
+        radius: 7,
+        fillColor: '#22c55e',
+        color: '#14532d',
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+      })
+      .bindPopup(`<strong>${c.name}</strong><br>Zcela legální užívání`)
+      .addTo(map);
+    });
   </script>
 </body>
 </html>
